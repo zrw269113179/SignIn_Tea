@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sign In</string>
+    <string name="title_activity_set_course">SetCourse</string>
 </resources>
