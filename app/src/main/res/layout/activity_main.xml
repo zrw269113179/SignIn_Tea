@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,42 +10,125 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.administrator.signin_Teacher.view.MainActivity"
     android:orientation="vertical">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_sign_in"
-        android:layout_margin="8dp"
-        android:text="发起签到"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/end_sign_in"
-        android:layout_margin="8dp"
-        android:text="结束签到"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="签到记录"
-        android:layout_margin="8dp"
-        android:id="@+id/record"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="缺勤记录"
-        android:layout_margin="8dp"
-        android:id="@+id/not"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="课程设置"
-        android:layout_margin="8dp"
-        android:id="@+id/setCourse" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/show_num"/>
-
-
-</LinearLayout>
+        <TableRow android:layout_weight="1">
+            <RelativeLayout 
+                android:background="@drawable/btn_back"
+                android:layout_weight="1">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/start_sign_in"
+                    android:text="发起签到"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="24dp"
+                    android:background="@color/hyaline"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp"
+                    android:src="@drawable/ic_sign_in"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/btn_back"
+                android:layout_weight="1">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="签到记录"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="24dp"
+                    android:background="@color/hyaline"
+                    android:id="@+id/record"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp"
+                    android:src="@drawable/ic_sign_in_record"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </TableRow>
+        <TableRow android:layout_weight="1">
+            <RelativeLayout
+                android:background="@drawable/btn_back"
+                android:layout_weight="1">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="缺勤记录"
+                android:gravity="bottom|center"
+                android:paddingBottom="24dp"
+                android:background="@color/hyaline"
+                android:id="@+id/not"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp"
+                    android:src="@drawable/ic_not_record"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/btn_back"
+                android:layout_weight="1">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="课程设置"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="24dp"
+                    android:background="@color/hyaline"
+                    android:id="@+id/setCourse" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp"
+                    android:src="@drawable/ic_course_set"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </TableRow>
+        <TableRow android:layout_weight="1">
+            <RelativeLayout
+                android:background="@drawable/btn_back"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/show_num"
+                android:gravity="bottom|center"
+                android:paddingBottom="24dp"
+                android:background="@color/hyaline"
+                android:text="查看签到"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp"
+                    android:src="@drawable/ic_show_sign_in"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/btn_back"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="24sp"
+                    android:background="@color/hyaline"
+                    android:text="更改密码"
+                    android:id="@+id/set_user" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="40dp"
+                    android:src="@drawable/ic_password_set"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </TableRow>
+</TableLayout>

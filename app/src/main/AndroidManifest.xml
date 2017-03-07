@@ -32,6 +32,7 @@
             android:value="z0IXNQNajGlCS0W8vMuazdWscvtpBsjU" />
 
         <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.newPassword"/>
         <activity
             android:name=".view.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -53,6 +54,10 @@
         <activity
             android:name=".view.SetCourse"
             android:label="@string/title_activity_set_course"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.SeeSignOn"
+            android:label="@string/title_activity_see_sign_on"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

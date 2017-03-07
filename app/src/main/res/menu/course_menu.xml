@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="增加课程"
+        android:id="@+id/addCourse"
+        android:icon="@drawable/ic_action_name"
+        app:showAsAction="ifRoom"/>
+    <item android:title="删除课程"
+        android:id="@+id/deleteCourse"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="ifRoom"/>
+</menu>
