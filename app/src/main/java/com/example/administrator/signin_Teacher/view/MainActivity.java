@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Button setCourse;
     public static User user;
     private Button setuser;
+    private  String cName;
     private android.widget.LinearLayout activitymain;
 
     private void initData(){
@@ -178,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 cId = mList.get(position).getObjectId();
+                                cName = mList.get(position).getCourseName();
                             }
 
                             @Override
@@ -225,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                                                             getSharedPreferences("data", MODE_PRIVATE).edit().putBoolean("signFlag", true).apply();
                                                             getSharedPreferences("data", MODE_PRIVATE).edit().putInt("signId", id).apply();
                                                             getSharedPreferences("data", MODE_PRIVATE).edit().putString("signObjectId", point.getObjectId()).apply();
+                                                            getSharedPreferences("data", MODE_PRIVATE).edit().putString("cName", cName).apply();
                                                         }
 
                                                         @Override

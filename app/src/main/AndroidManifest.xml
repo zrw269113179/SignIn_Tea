@@ -29,7 +29,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="z0IXNQNajGlCS0W8vMuazdWscvtpBsjU" />
+            android:value="" />
 
         <activity android:name=".view.MainActivity" />
         <activity android:name=".view.newPassword"/>

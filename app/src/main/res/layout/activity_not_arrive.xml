@@ -20,21 +20,26 @@
                 android:id="@+id/startbtn"
                 android:layout_weight="1"
                 android:text="起始时间"
-                android:layout_margin="8dp"/>
+                android:layout_margin="4dp"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/endbtn"
                 android:text="结束时间"
-                android:layout_margin="8dp"/>
+                android:layout_margin="4dp"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="查询"
-                android:layout_margin="8dp"
+                android:text="查询详情"
+                android:layout_margin="4dp"
                 android:id="@+id/query"/>
+            <Button
+                android:layout_weight="1"
+                android:text="统计查询"
+                android:layout_margin="4dp"
+                android:id="@+id/count_query"/>
         </TableRow>
         <TableRow>
             <TextView android:id="@+id/startText"

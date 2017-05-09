@@ -19,8 +19,11 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.administrator.signin_Teacher.R;
+import com.example.administrator.signin_Teacher.adapter.CountNotArriveAdapter;
 import com.example.administrator.signin_Teacher.adapter.NotArriveAdapter;
+import com.example.administrator.signin_Teacher.module.CountNotArrive;
 import com.example.administrator.signin_Teacher.module.NotArrive;
+import com.example.administrator.signin_Teacher.module.StudentCourse;
 import com.example.administrator.signin_Teacher.module.User;
 
 import java.text.SimpleDateFormat;
@@ -43,9 +46,11 @@ public class NotArriveActivity extends AppCompatActivity {
     final int TIME_DIALOG1 = 2;
     final int DATE_DIALOG2 = 3;
     final int TIME_DIALOG2 = 4;
+    private List<CountNotArrive> mCountNotList;
     private Button startbtn;
     private Button endbtn;
     private Button query;
+    private Button countQuery;
     private TextView startText;
     private TextView endText;
     private RecyclerView recycler;
@@ -64,6 +69,7 @@ public class NotArriveActivity extends AppCompatActivity {
         this.query = (Button) findViewById(R.id.query);
         this.endbtn = (Button) findViewById(R.id.endbtn);
         this.startbtn = (Button) findViewById(R.id.startbtn);
+        this.countQuery = (Button) findViewById(R.id.count_query);
         startbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +146,56 @@ public class NotArriveActivity extends AppCompatActivity {
                 });
             }
         });
+        countQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                initStudentData(cId);
+                BmobQuery<NotArrive> query1 = new BmobQuery<NotArrive>();
+                query1.addWhereLessThanOrEqualTo("Time",maxTime);
+                query1.addWhereEqualTo("cId",cId);
+//返回50条数据，如果不加上这条语句，默认返回10条数据
+                query1.setLimit(1000);
+                BmobQuery<NotArrive> query2 = new BmobQuery<NotArrive>();
+                query2.addWhereGreaterThanOrEqualTo("Time",minTime);
+                List<BmobQuery<NotArrive>> queries = new ArrayList<BmobQuery<NotArrive>>();
+                queries.add(query1);
+                queries.add(query2);
+                BmobQuery<NotArrive> query = new BmobQuery<NotArrive>();
+                query.and(queries);
+//执行查询方法
+                query.findObjects(NotArriveActivity.this, new FindListener<NotArrive>() {
+                    @Override
+                    public void onSuccess(List<NotArrive> object) {
+                        // TODO Auto-generated method stub
+
+                        if (object.size() == 0) {
+                            Toast.makeText(NotArriveActivity.this, "无记录", Toast.LENGTH_SHORT).show();
+                        } else {
+                            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
+                            LinearLayoutManager manager = new LinearLayoutManager(NotArriveActivity.this);
+                            recyclerView.setLayoutManager(manager);
+                            for (NotArrive notArrive:object){
+                                for (int i = 0; i < mCountNotList.size(); i++){
+                                    if (notArrive.getId().equals(mCountNotList.get(i).getsId())){
+                                        int temp = mCountNotList.get(i).getNotCount();
+                                        temp++;
+                                        mCountNotList.get(i).setNotCount(temp);
+                                    }
+                                }
+                            }
+                            CountNotArriveAdapter adapter = new CountNotArriveAdapter(mCountNotList);
+                            recyclerView.setAdapter(adapter);
+                        }
+                    }
+                    @Override
+                    public void onError(int code, String msg) {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(NotArriveActivity.this,"查询失败："+msg,Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
     }
     @Override
@@ -209,4 +264,27 @@ public class NotArriveActivity extends AppCompatActivity {
             endText.setText(formatter.format(indata));
         }
     };
+    private void initStudentData(String cId){
+        BmobQuery<StudentCourse> query = new BmobQuery<>();
+        query.addWhereEqualTo("cId",cId);
+        query.findObjects(NotArriveActivity.this, new FindListener<StudentCourse>() {
+            @Override
+            public void onSuccess(List<StudentCourse> list) {
+                mCountNotList = new ArrayList<CountNotArrive>();
+                for (StudentCourse li:list) {
+                    CountNotArrive countNotArrive = new CountNotArrive();
+                    countNotArrive.setcId(li.getcId());
+                    countNotArrive.setName(li.getName());
+                    countNotArrive.setsId(li.getsId());
+                    countNotArrive.setNotCount(0);
+                    mCountNotList.add(countNotArrive);
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+        });
+    }
 }

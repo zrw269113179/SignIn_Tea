@@ -12,6 +12,15 @@ public class NotArrive extends BmobObject {
     private String Title;
     private Long Time;
     private String cId;
+    private String cName;
+
+    public String getcName() {
+        return cName;
+    }
+
+    public void setcName(String cName) {
+        this.cName = cName;
+    }
 
     public String getcId() {
         return cId;

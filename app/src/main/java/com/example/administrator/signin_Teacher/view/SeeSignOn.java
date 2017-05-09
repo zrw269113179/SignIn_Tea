@@ -37,6 +37,7 @@ public class SeeSignOn extends AppCompatActivity {
     private RecyclerView mRecycler;
     private Button endsignin;
     public static List<StudentCourse> mUnSignOn;
+    private String cName;
     private UnSignOnAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     @Override
@@ -53,6 +54,9 @@ public class SeeSignOn extends AppCompatActivity {
         mUnSignOn = new ArrayList<StudentCourse>();
         adapter = new UnSignOnAdapter(mUnSignOn);
         mRecycler.setAdapter(adapter);
+
+        cName = getSharedPreferences("data",MODE_PRIVATE).getString("cName","");
+
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.mRefresh);
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
@@ -88,6 +92,7 @@ public class SeeSignOn extends AppCompatActivity {
                                     not.setId(stu.getsId());
                                     not.setTime(System.currentTimeMillis());
                                     not.setcId(stu.getcId());
+                                    not.setcName(cName);
                                     not.save(SeeSignOn.this, new SaveListener() {
                                         @Override
                                         public void onSuccess() {
